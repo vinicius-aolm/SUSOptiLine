@@ -8,14 +8,17 @@ Contribuições e feedbacks são bem-vindos.
 # Organização do GIT.
 Redme: Resumo e visão geral do projeto.
 Notebooks: 
--notebook tal ai(.ipynb)
 
-#Banco de dados:
+-SUSOptiline-Building.ipynb
+-SUSOptiline.ipynb
+
+# Banco de dados:
 -Pacientes.csv
 O Banco de dados apresenta 150 pacientes hipoteticos, criados pela propia equipe.
 Organizados por id,idade, genero e comorbidades.
 tais dados tambem estão disponiveis no notebook SUSOptiLine.ipynb em forma de lista de dicionário.
 # Funçoes
+Disponiveis em funçoes.py
 criar_gene: Gera um gene (indivíduo) representando um paciente.
 cria_populacao: Cria a população inicial de indivíduos.
 calcular_aptidao: Calcula a aptidão de um indivíduo com base nos critérios definidos (idade e comorbidades).
