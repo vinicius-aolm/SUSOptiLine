@@ -1,4 +1,6 @@
 # Introdução
+![MioCard (3)](https://github.com/vinicius-aolm/SUSOptiLine/assets/135054073/7b660a6b-496f-4935-9502-bba2137cf785)
+
 ## SUSOptiLine
 Desenvolvimento de um algoritmo genético para otimizar filas de espera no Sistema Único de Saúde (SUS) do Brasil, considerando fatores como idade, gênero e comorbidades para priorização de atendimento. 
 Contribuições e feedbacks são bem-vindos.
