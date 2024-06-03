@@ -244,14 +244,69 @@ def mutacao_troca(individuo, chance_de_mutacao):
             individuo[i], individuo[j] = individuo[j], individuo[i]
 ```
 
+### 10.Algoritmo Genético
+Agora vamos juntar todas as partes e implementar o algoritmo genético completo:
 
+```
+def algoritmo_genetico(pacientes):
+    """
+    Executa o algoritmo genético para otimizar a ordem de atendimento dos pacientes.
+    
+    Args:
+        pacientes (list): Lista de dicionários representando os pacientes.
+    
+    Returns:
+        tuple: Melhor indivíduo observado e seu valor de aptidão.
+    """
+    hall_da_fama = []
+    populacao = cria_populacao(TAMANHO_POPULACAO, pacientes)
+
+    for _ in range(NUM_GERACOES):
+        fitness = funcao_objetivo_pop(populacao)
+        selecionados = selecao_torneio(populacao, fitness)
+        
+        proxima_geracao = []
+        for pai, mae in zip(selecionados[::2], selecionados[1::2]):
+            filho1, filho2 = cruzamento_ponto_simples(pai, mae, CHANCE_DE_CRUZAMENTO)
+            proxima_geracao.append(filho1)
+            proxima_geracao.append(filho2)
+        
+        for individuo in proxima_geracao:
+            mutacao_troca(individuo, CHANCE_DE_MUTACAO)
+        
+        fitness = funcao_objetivo_pop(proxima_geracao)
+        maior_fitness = max(fitness)
+        indice = fitness.index(maior_fitness)
+        hall_da_fama.append(proxima_geracao[indice])
+        
+        populacao = proxima_geracao
+    
+    fitness = funcao_objetivo_pop(hall_da_fama)
+    maior_fitness = max(fitness)
+    indice = fitness.index(maior_fitness)
+    melhor_individuo_observado = hall_da_fama[indice]
+    
+    return melhor_individuo_observado, maior_fitness
+
+```
+## IMPORTANDO DADOS
+Importação de Dados
+Para ultilização do algoritmo genético com seus propios dados, é necessário importar os dados dos pacientes a partir de um arquivo CSV. O arquivo CSV deve seguir a seguinte estrutura:
+
+Estrutura do Arquivo CSV
+O arquivo CSV deve conter as seguintes colunas:
+
+**id**: Identificador único do paciente.
+**idade**: Idade do paciente.
+**genero**: Gênero do paciente (F para feminino, M para masculino).
+**comorbidades**: Número de comorbidades do paciente.
 # Bibliotecas
 
-**Random**: _A biblioteca random do Python fornece ferramentas para gerar números pseudoaleatórios, permitindo a criação de sequências, seleções e embaralhamentos aleatórios._
+**Random**: _A biblioteca random do Python fornece ferramentas para gerar números pseudoaleatórios, permitindo a criação de sequências, seleções e embaralhamentos aleatórios._ [2]
 
 
 # Referências
 
 [1] RELATO DE EXPERIÊNCIA: O PROBLEMA DA FILA NUMA UNIDADE DE SAÚDE – RECIFE – PE; SARISECE, MARIA PACHÊCO VILELA. Disponível em: <https://www.cpqam.fiocruz.br/bibpdf/2010vilela-smp.pdf>. Acesso em: 28 abr. 2024.
 
-
+[2]random — Generate pseudo-random numbers Disponível em: <https://docs.python.org/3/library/random.html>. Acesso em: 28 abr. 2024.
