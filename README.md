@@ -47,7 +47,7 @@ Disponiveis em funçoes.py.
 **mutacao_troca**: Aplica mutações aos indivíduos para introduzir variação genética.
 
 # Construção do Algoritimo
-## 1. Parâmetros do Algoritmo Genético
+### 1. Parâmetros do Algoritmo Genético
 
 Os principais parâmetros do algoritmo genético são:
 
@@ -68,7 +68,7 @@ CHANCE_DE_CRUZAMENTO = 0.7
 CHANCE_DE_MUTACAO = 0.01
  ```
 
-## 2.Dados dos Pacientes
+### 2.Dados dos Pacientes
 
 Vamos definir uma lista de pacientes com suas características:
 
@@ -87,7 +87,7 @@ PACIENTES = [
     {"id": 11, "idade": 75, "genero": "M", "comorbidades": 2},
 ]
 ```
-# 3.Função para Criar um Gene
+### 3.Função para Criar um Gene
 
 Um gene representa uma possível solução (ordem de atendimento dos pacientes). Vamos definir uma função que cria um gene, embaralhando a lista de pacientes:
 ```
@@ -108,7 +108,7 @@ def criar_gene(pacientes):
     return gene
 ```
 
-# 4.Função para Criar a População Inicial
+### 4.Função para Criar a População Inicial
 
 A população inicial é composta por vários genes. Vamos definir uma função que cria uma população inicial:
 ```
@@ -126,7 +126,7 @@ def cria_populacao(tamanho_populacao, pacientes):
     return [criar_gene(pacientes) for _ in range(tamanho_populacao)]
 ```
 
-# 5.Função de Aptidão
+### 5.Função de Aptidão
 
 A função de aptidão avalia a qualidade de um gene (uma ordem de pacientes). Vamos definir uma função que calcula a aptidão de uma ordem de pacientes:
 
@@ -153,7 +153,7 @@ def calcular_aptidao(ordem):
     return aptidao
 ```
 
-# 6.Função Objetivo para a População
+### 6.Função Objetivo para a População
 Vamos definir uma função que calcula a aptidão de toda a população:
 ```
 def funcao_objetivo_pop(populacao):
@@ -169,7 +169,7 @@ def funcao_objetivo_pop(populacao):
     return [calcular_aptidao(gene) for gene in populacao]
 ```
 
-# 7.Seleção por Torneio
+### 7.Seleção por Torneio
 
 A seleção por torneio é uma técnica onde um número fixo de indivíduos é selecionado aleatoriamente, e o melhor entre eles é escolhido.
 Vamos implementar a função de seleção por torneio:
@@ -200,7 +200,7 @@ def selecao_torneio(populacao, fitness, tamanho_torneio=3):
 
 #### Optamos por usar seleção por torneio porque é mais robusta em cenários onde há grande variabilidade na aptidão, garantindo que os melhores indivíduos sejam frequentemente selecionados.
 
-# 8.Cruzamento de Ponto Simples
+### 8.Cruzamento de Ponto Simples
 
 O cruzamento combina partes de dois genes para criar novos genes. Vamos implementar uma função para cruzamento de ponto simples:
 ```
@@ -224,7 +224,7 @@ def cruzamento_ponto_simples(pai, mae, chance_de_cruzamento):
     return pai, mae
 ```
 
-# 9. Mutação
+### 9. Mutação
 A mutação altera aleatoriamente um gene para introduzir variabilidade. Vamos implementar uma função de mutação por troca:
 ```
 def mutacao_troca(individuo, chance_de_mutacao):
