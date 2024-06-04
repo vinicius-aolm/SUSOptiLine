@@ -181,13 +181,13 @@ def selecao_torneio(populacao, fitness, tamanho_torneio=3):
 
 #### Optamos por usar seleção por torneio porque é mais robusta em cenários onde há grande variabilidade na aptidão, garantindo que os melhores indivíduos sejam frequentemente selecionados.
 
-### 8.Cruzamento de Ponto Simples
+### 8.Cruzamento de Ponto Simples por Permutação
 
-O cruzamento combina partes de dois genes para criar novos genes. Vamos implementar uma função para cruzamento de ponto simples:
+O cruzamento combina partes de dois genes para criar novos genes. Vamos implementar uma função para cruzamento de ponto simples por permutação:
 ```python
-def cruzamento_ponto_simples(pai, mae, chance_de_cruzamento):
+def cruzamento_ponto_simples_perm(pai, mae, chance_de_cruzamento):
     """
-    Realiza o cruzamento de dois genes usando ponto simples.
+    Realiza o cruzamento de dois genes usando ponto simples, permutando os pais para criar novos filhos.
     
     Args:
         pai (list): Gene pai.
