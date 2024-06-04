@@ -1,10 +1,12 @@
 # SUSOptiLine
 GRUPO 11, González, Gabriel; André, Vinicius.
 ILUM ESCOLA DE CIENCIA, CAMPINAS 2024.
-## Problematica
+## Problemática
 
-O Sistema Único de Saúde (SUS) é um dos maiores e mais complexos sistemas de saúde pública do mundo, responsável por fornecer atendimento médico a milhões de brasileiros. No entanto, um dos problemas mais persistentes e preocupantes que afetam o SUS é a longa espera e a demora no pronto atendimento[1]. As filas nos hospitais e postos de saúde se tornaram uma imagem comum, refletindo a sobrecarga dos serviços de saúde, a falta de recursos e a gestão ineficiente. Este cenário resulta em atrasos críticos no diagnóstico e tratamento, impactando negativamente a saúde e a qualidade de vida dos pacientes. 
+O Sistema Único de Saúde (SUS) é um dos maiores e mais complexos sistemas de saúde pública do mundo, responsável por fornecer atendimento médico a milhões de brasileiros. No entanto, um dos problemas mais persistentes e preocupantes que afetam o SUS é a longa espera e a demora no pronto atendimento . As filas nos hospitais e postos de saúde se tornaram uma imagem comum, refletindo a sobrecarga dos serviços de saúde, a falta de recursos e a gestão ineficiente. Este cenário resulta em atrasos críticos no diagnóstico e tratamento, impactando negativamente a saúde e a qualidade de vida dos pacientes.
+
 Pensando nisso, em nosso trabalho final de algoritmos genéticos, decidimos desenvolver um algoritmo genético para otimizar filas de espera no Sistema Único de Saúde (SUS) do Brasil, considerando fatores como idade, gênero e comorbidades para priorização de atendimento.
+
 Contribuições e feedbacks são bem-vindos.
 
 ## SUSOptiLine
@@ -12,52 +14,32 @@ Contribuições e feedbacks são bem-vindos.
 Contribuições e feedbacks são bem-vindos.
 
 # Organização do GIT.
-Redme: Resumo e visão geral do projeto.
+- Readme: Resumo e visão geral do projeto.
+- Notebook: `SUSOptiline.ipynb`
+- Banco de dados: `Pacientes.csv`
 
-Notebooks: 
+O banco de dados apresenta 150 pacientes hipotéticos, criados pela própria equipe, organizados por ID, idade, gênero e comorbidades. Esses dados também estão disponíveis no notebook SUSOptiLine.ipynb em forma de lista de dicionário.
 
--SUSOptiline-Building.ipynb
+# Glossário de Funções
 
--SUSOptiline.ipynb
+Disponíveis em **`funçoes.py`**.
 
+- **criar_gene:** Gera um gene (indivíduo) representando uma possível organização da fila.
+- **cria_populacao:** Cria a população inicial de indivíduos.
+- **calcular_aptidao:** Calcula a aptidão de um indivíduo com base nos critérios definidos (idade, comorbidades, gênero e posição na fila).
+- **funcao_objetivo_pop:** Calcula a aptidão de toda a população.
+- **selecao_torneio:** Seleciona indivíduos para reprodução com base em um torneio.
+- **cruzamento_ponto_simples:** Realiza o cruzamento de dois indivíduos para gerar novos indivíduos.
+- **mutacao_troca:** Aplica mutações aos indivíduos para introduzir variação genética.
 
-# Banco de dados:
--Pacientes.csv
-
-O Banco de dados apresenta 150 pacientes hipoteticos, criados pela propia equipe.
-Organizados por id, idade, genero e comorbidades.
-
-tais dados tambem estão disponiveis no notebook SUSOptiLine.ipynb em forma de lista de dicionário.
-# Glossario de Funções
-
-Disponiveis em funçoes.py.
-
-**criar_gene**: Gera um gene (indivíduo) representando um paciente.
-
-**cria_populacao**: Cria a população inicial de indivíduos.
-
-**calcular_aptidao**: Calcula a aptidão de um indivíduo com base nos critérios definidos (idade e comorbidades).
-
-**funcao_objetivo_pop**: Calcula a aptidão de toda a população.
-
-**selecao_torneio**: Seleciona indivíduos para reprodução com base em um torneio.
-
-**cruzamento_ponto_simples**: Realiza o cruzamento de dois indivíduos para gerar novos indivíduos.
-
-**mutacao_troca**: Aplica mutações aos indivíduos para introduzir variação genética.
-
-# Construção do Algoritimo
+# Construção do Algoritmo
 ### 1. Parâmetros do Algoritmo Genético
-
 Os principais parâmetros do algoritmo genético são:
 
-**Tamanho da População**: Número de possíveis soluções (indivíduos) em cada geração.
-
-**Número de Gerações**: Quantidade de iterações que o algoritmo vai executar.
-
-**Chance de Cruzamento**: Probabilidade de que dois indivíduos se cruzem para formar novos indivíduos.
-
-**Chance de Mutação**: Probabilidade de que um indivíduo sofra uma mutação.
+- **Tamanho da População**: Número de possíveis soluções (indivíduos) em cada geração.
+- **Número de Gerações**: Quantidade de iterações que o algoritmo vai executar.
+- **Chance de Cruzamento**: Probabilidade de que dois indivíduos se cruzem para formar novos indivíduos.
+- **Chance de Mutação**: Probabilidade de que um indivíduo sofra uma mutação.
 
 Vamos começar definindo esses parâmetros:
 ```python
@@ -72,7 +54,7 @@ CHANCE_DE_MUTACAO = 0.01
 
 Vamos definir uma lista de pacientes com suas características:
 
-```
+```python
 PACIENTES = [
     {"id": 1, "idade": 70, "genero": "F", "comorbidades": 3},
     {"id": 2, "idade": 65, "genero": "M", "comorbidades": 2},
@@ -90,7 +72,7 @@ PACIENTES = [
 ### 3.Função para Criar um Gene
 
 Um gene representa uma possível solução (ordem de atendimento dos pacientes). Vamos definir uma função que cria um gene, embaralhando a lista de pacientes:
-```
+```python
 import random
 
 def criar_gene(pacientes):
@@ -111,7 +93,7 @@ def criar_gene(pacientes):
 ### 4.Função para Criar a População Inicial
 
 A população inicial é composta por vários genes. Vamos definir uma função que cria uma população inicial:
-```
+```python
 def cria_populacao(tamanho_populacao, pacientes):
     """
     Cria uma população inicial de genes.
@@ -130,7 +112,7 @@ def cria_populacao(tamanho_populacao, pacientes):
 
 A função de aptidão avalia a qualidade de um gene (uma ordem de pacientes). Vamos definir uma função que calcula a aptidão de uma ordem de pacientes:
 
-```
+```python
 def calcular_aptidao(ordem):
     """
     Calcula a aptidão de uma ordem de pacientes.
@@ -155,7 +137,7 @@ def calcular_aptidao(ordem):
 
 ### 6.Função Objetivo para a População
 Vamos definir uma função que calcula a aptidão de toda a população:
-```
+```python
 def funcao_objetivo_pop(populacao):
     """
     Calcula a aptidão para toda a população.
@@ -173,7 +155,7 @@ def funcao_objetivo_pop(populacao):
 
 A seleção por torneio é uma técnica onde um número fixo de indivíduos é selecionado aleatoriamente, e o melhor entre eles é escolhido.
 Vamos implementar a função de seleção por torneio:
-```
+```python
 def selecao_torneio(populacao, fitness, tamanho_torneio=3):
     """
     Seleciona indivíduos da população usando o método de torneio.
@@ -194,16 +176,15 @@ def selecao_torneio(populacao, fitness, tamanho_torneio=3):
     return selecionados
 ```
  ### Diferença entre Seleção por Torneio e Roleta
- **Seleção por Torneio**: Indivíduos competem em pequenos torneios e o melhor de cada torneio é selecionado. É simples e eficaz, especialmente quando há grande variabilidade na aptidão.
- 
-**Seleção por Roleta**: Indivíduos são selecionados com probabilidade proporcional à sua aptidão. É menos eficiente quando há pouca diferença na aptidão dos indivíduos.
+ - **Seleção por Torneio**: Indivíduos competem em pequenos torneios e o melhor de cada torneio é selecionado. É simples e eficaz, especialmente quando há grande variabilidade na aptidão.
+ - **Seleção por Roleta**: Indivíduos são selecionados com probabilidade proporcional à sua aptidão. É menos eficiente quando há pouca diferença na aptidão dos indivíduos.
 
 #### Optamos por usar seleção por torneio porque é mais robusta em cenários onde há grande variabilidade na aptidão, garantindo que os melhores indivíduos sejam frequentemente selecionados.
 
 ### 8.Cruzamento de Ponto Simples
 
 O cruzamento combina partes de dois genes para criar novos genes. Vamos implementar uma função para cruzamento de ponto simples:
-```
+```python
 def cruzamento_ponto_simples(pai, mae, chance_de_cruzamento):
     """
     Realiza o cruzamento de dois genes usando ponto simples.
@@ -226,7 +207,7 @@ def cruzamento_ponto_simples(pai, mae, chance_de_cruzamento):
 
 ### 9. Mutação
 A mutação altera aleatoriamente um gene para introduzir variabilidade. Vamos implementar uma função de mutação por troca:
-```
+```python
 def mutacao_troca(individuo, chance_de_mutacao):
     """
     Aplica mutação por troca em um gene.
@@ -247,7 +228,7 @@ def mutacao_troca(individuo, chance_de_mutacao):
 ### 10.Algoritmo Genético
 Agora vamos juntar todas as partes e implementar o algoritmo genético completo:
 
-```
+```python
 def algoritmo_genetico(pacientes):
     """
     Executa o algoritmo genético para otimizar a ordem de atendimento dos pacientes.
@@ -290,16 +271,16 @@ def algoritmo_genetico(pacientes):
 
 ```
 ## IMPORTANDO DADOS
-Importação de Dados
-Para ultilização do algoritmo genético com seus propios dados, é necessário importar os dados dos pacientes a partir de um arquivo CSV. O arquivo CSV deve seguir a seguinte estrutura:
+Para utilização do algoritmo genético com seus próprios dados, é necessário importar os dados dos pacientes a partir de um arquivo CSV. Ou digitá-los manualmente, por meio de uma lista de dicionários, assim como é feito no notebook. O arquivo CSV deve seguir a seguinte estrutura:
 
-Estrutura do Arquivo CSV
+# Estrutura do Arquivo CSV
 O arquivo CSV deve conter as seguintes colunas:
 
 **id**: Identificador único do paciente.
 **idade**: Idade do paciente.
 **genero**: Gênero do paciente (F para feminino, M para masculino).
 **comorbidades**: Número de comorbidades do paciente.
+
 # Bibliotecas
 
 **Random**: _A biblioteca random do Python fornece ferramentas para gerar números pseudoaleatórios, permitindo a criação de sequências, seleções e embaralhamentos aleatórios._ [2]
