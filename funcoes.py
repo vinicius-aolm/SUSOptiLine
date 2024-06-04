@@ -79,15 +79,15 @@ def selecao_torneio(populacao, fitness, tamanho_torneio=3):
         selecionados.append(vencedor[0])
     return selecionados
 
-def cruzamento_ponto_simples(pai, mae, chance_de_cruzamento):
+def cruzamento_ponto_simples_perm(pai, mae, chance_de_cruzamento):
     """
-    Realiza o cruzamento de dois genes usando ponto simples.
-
+    Realiza o cruzamento de dois genes usando ponto simples, permutando os pais para criar novos filhos.
+    
     Args:
         pai (list): Gene pai.
         mae (list): Gene mãe.
         chance_de_cruzamento (float): Probabilidade de realizar o cruzamento.
-
+    
     Returns:
         tuple: Dois novos genes resultantes do cruzamento.
     """
