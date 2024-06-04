@@ -205,8 +205,9 @@ def cruzamento_ponto_simples_perm(pai, mae, chance_de_cruzamento):
     return pai, mae
 ```
 
-### 9. Mutação
-A mutação altera aleatoriamente um gene para introduzir variabilidade. Vamos implementar uma função de mutação por troca:
+### 9. Mutação Pareada
+A mutação "pareada" percorre o gene e, com uma probabilidade dada, troca o valor de um elemento com outro aleatório na lista. Essa abordagem de mutação “pareada” é interessante, pois evita a repetição de genes, especialmente quando estamos trabalhando com filas, onde isso seria inaceitavel.
+
 ```python
 def mutacao_troca(individuo, chance_de_mutacao):
     """
